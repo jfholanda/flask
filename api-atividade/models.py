@@ -2,6 +2,7 @@ from sqlalchemy import create_engine, Column, Integer, String, ForeignKey
 from sqlalchemy.orm import scoped_session, sessionmaker, relationship
 from sqlalchemy.ext.declarative import declarative_base
 
+
 engine = create_engine('sqlite:///atividades.db')
 db_session = scoped_session(sessionmaker(autocommit=False,
                                         bind=engine))
@@ -30,6 +31,7 @@ class Atividades(Base):
     __tablename__ = 'atividades'
     id = Column(Integer, primary_key=True)
     nome = Column(String(80))
+    status = Column(String(10))
     pessoa_id = Column(Integer, ForeignKey('pessoas.id'))
     pessoa = relationship("Pessoas")
 
